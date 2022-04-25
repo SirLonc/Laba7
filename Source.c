@@ -1,13 +1,27 @@
 #include "Header.h"
-#define len 11
 
-int *freq(t)
+int* freq(int sample_size, int first_element_of_range, int last_element_of_range, int range_size)
 {
-    int a[len] = { -5,-4,-3,-2,-1,0,1,2,3,4,5 };
-    int frequency_array[len] = { 0 };
-    for (int i = 0; i < t; i++) {
-        int random_num = (-5) + rand() % 11;
-        for (int k = 0; k <= len; k++) {
+    
+    int* a;
+    int* frequency_array;
+
+
+    a = (int*)malloc(range_size * sizeof(int));
+    frequency_array = (int*)malloc(range_size * sizeof(int));
+
+    for (int i = 0; i < range_size; i++) {
+        a[i] = first_element_of_range + i;
+    }
+
+    for (int i = 0; i < range_size; i++) {
+        frequency_array[i] = 0;
+    }
+
+
+    for (int i = 0; i < sample_size; i++) {
+        int random_num = first_element_of_range + (rand() % range_size);
+        for (int k = 0; k < range_size; k++) {
             if (random_num == a[k]) {
                 frequency_array[k] += 1;
             }
